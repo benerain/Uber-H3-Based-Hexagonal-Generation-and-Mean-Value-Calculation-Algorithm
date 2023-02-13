@@ -31,3 +31,8 @@ If you are not running on a MacOS system, please select the corresponding operat
 
 sample output:  
 
+![图片 1](https://user-images.githubusercontent.com/21291632/218384276-001f8366-74ee-4d67-a310-9bafe6ba5a3a.png)
+![图片 2](https://user-images.githubusercontent.com/21291632/218384293-7b7cd2b7-dc4a-47f9-883b-d620dbfe03a1.png)
+
+
+
