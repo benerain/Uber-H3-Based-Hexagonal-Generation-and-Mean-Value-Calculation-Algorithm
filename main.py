@@ -6,11 +6,9 @@ import rioxarray as rioxr
 from h3 import h3
 from shapely.geometry import Polygon
 import time
-import pyroscope
-
 
 # MacOS
-# chrome_path = 'open -a /Applications/Google\ Chrome.app %s'
+chrome_path = 'open -a /Applications/Google\ Chrome.app %s'
 
 # Windows
 # chrome_path = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
@@ -18,10 +16,6 @@ import pyroscope
 # Linux
 # chrome_path = '/usr/bin/google-chrome %s'
 
-pyroscope.configure(
-    enable_logging=True,
-    application_name="uberh3.app",
-    server_address="http://pyroscope:4040")
 
 class Map:
     '''
@@ -65,7 +59,7 @@ class Map:
 
         # Display the map
         self.my_map.save("map.html")
-        # webbrowser.get(chrome_path).open("map.html")
+        webbrowser.get(chrome_path).open("map.html")
 
 class hexagon_mean:
     '''
@@ -102,11 +96,11 @@ class hexagon_mean:
 
         elif isinstance(region,str):
             if region.endswith('.shp'):
-                gdf = gp.GeoDataFrame(df, geometry=gp.points_from_xy(df.lon, df.lat)) #todo points_from_xy用了很长时间
+                gdf = gp.GeoDataFrame(df, geometry=gp.points_from_xy(df.lon, df.lat))
                 gdf.crs = 'EPSG:4326'
 
                 shparea = gp.read_file(region)
-                points_inter  = gp.overlay(gdf, shparea, how='intersection', keep_geom_type=None) #todo gp.overlay也花了很长时间
+                points_inter  = gp.overlay(gdf, shparea, how='intersection', keep_geom_type=None)
                 return points_inter
 
             elif region.endswith('.geojson'):
@@ -162,11 +156,9 @@ class hexagon_mean:
 if __name__ == '__main__':
     # Define coordinates of where we want to center our map
     # coords = [51.5074, 0.1278]
-
-
     coords =[37.3615593, -122.0553238]
-    tif = 'sea_surface_temp_raster.tiff'
-    region = 'shandong.geojson'
+    tif = '/input_data/sea_surface_temp_raster.tiff'
+    region = '/input_data/shandong.geojson'
 
     map1 = Map(center=coords, zoom_start=4)
 
